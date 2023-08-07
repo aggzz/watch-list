@@ -13,9 +13,9 @@ const units = [
     bin: 1000036,
     size: 13325,
     building: {
-      address: "70 BROAD STREET"
+      address: "70 BROAD STREET",
     },
-    unit_number: "10A"
+    unit_number: "10A",
   },
   {
     bath_count: 1,
@@ -23,9 +23,9 @@ const units = [
     bin: 1000301,
     size: null,
     building: {
-      address: "350 ALBANY STREET"
+      address: "350 ALBANY STREET",
     },
-    unit_number: "10"
+    unit_number: "10",
   },
   {
     bath_count: 1,
@@ -33,9 +33,9 @@ const units = [
     bin: 1000794,
     size: null,
     building: {
-      address: "88 GREENWICH STREET"
+      address: "88 GREENWICH STREET",
     },
-    unit_number: "11A"
+    unit_number: "11A",
   },
   {
     bath_count: 1,
@@ -43,9 +43,9 @@ const units = [
     bin: 1000829,
     size: null,
     building: {
-      address: "67 WALL STREET"
+      address: "67 WALL STREET",
     },
-    unit_number: "21F"
+    unit_number: "21F",
   },
   {
     bath_count: 3,
@@ -53,9 +53,9 @@ const units = [
     bin: 1001007,
     size: 2276,
     building: {
-      address: "70 PINE STREET"
+      address: "70 PINE STREET",
     },
-    unit_number: "35H"
+    unit_number: "35H",
   },
   {
     bath_count: 2,
@@ -63,8 +63,8 @@ const units = [
     bin: 1001263,
     size: 1426,
     building: {
-      address: "111 FULTON STREET"
+      address: "111 FULTON STREET",
     },
-    unit_number: null
-  }
+    unit_number: null,
+  },
 ];
