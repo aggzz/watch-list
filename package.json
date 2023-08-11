@@ -1,22 +1,20 @@
 {
-  "name": "todos",
+  "name": "movie-list",
   "version": "0.0.1",
   "private": true,
   "devDependencies": {
-    "react-scripts": "^2.0.2"
+    "react-scripts": "5.0.1"
   },
   "dependencies": {
-    "prop-types": "15.7.2",
-    "react": "17.0.1",
-    "react-dom": "17.0.1",
-    "react-jss": "10.5.1",
-    "react-redux": "7.2.2",
-    "redux": "4.0.5"
+    "prop-types": "15.8.1",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-redux": "8.1.2",
+    "redux": "4.2.1"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "eject": "react-scripts eject",
     "test": "react-scripts test --env=node"
   },
   "browserslist": [
