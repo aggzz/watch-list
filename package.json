@@ -8,6 +8,6 @@
   },
   "devDependencies": {
     "gh-pages": "^5.0.0",
-    "react-scrips": "5.0.1"
+    "react-scripts": "5.0.1"
   }
 }
