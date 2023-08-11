@@ -1,4 +1,10 @@
 {
+  "name": "movie-list",
+  "version": "0.0.1",
+  "private": true,
+  "devDependencies": {
+    "react-scripts": "5.0.1"
+  },
   "dependencies": {
     "prop-types": "15.8.1",
     "react": "18.2.0",
@@ -6,8 +12,17 @@
     "react-redux": "8.1.2",
     "redux": "4.2.1"
   },
-  "devDependencies": {
-    "gh-pages": "^5.0.0",
-    "react-scripts": "5.0.1"
-  }
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=node",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }
