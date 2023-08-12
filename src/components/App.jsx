@@ -53,7 +53,6 @@ const App = () => {
     ) {
       return;
     }
-    console.log(!isResultLoading, movieList.length, totalCount);
     if (
       !isResultLoading &&
       (movieList.length < totalCount || totalCount === null)
