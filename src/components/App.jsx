@@ -1,4 +1,10 @@
-import React, { useEffect, useState, useMemo, useRef } from "react";
+import React, {
+  useEffect,
+  useState,
+  useMemo,
+  useRef,
+  useCallback,
+} from "react";
 import GridView from "./grid-view";
 import SearchBox from "./searchbox";
 import "./style.css";
@@ -11,6 +17,7 @@ const App = () => {
   const [isResultLoading, setIsResultLoading] = useState(false);
   const [error, setError] = useState(null);
   const observerTarget = useRef(null);
+
   const fetchMovieList = async ({ pageno }) => {
     setIsResultLoading(true);
     let response = await fetch(
@@ -26,7 +33,6 @@ const App = () => {
         setTotalCount(response.page[`total-content-items`]);
         setPageNumber(pageno);
       } else {
-        //sth
         setError("Unable to load data");
       }
     } catch (error) {
@@ -40,28 +46,49 @@ const App = () => {
     fetchMovieList({ pageno: 1 });
   }, []);
 
+  const handleScroll = () => {
+    if (
+      window.innerHeight + document.documentElement.scrollTop <
+      document.documentElement.offsetHeight
+    ) {
+      return;
+    }
+    console.log(!isResultLoading, movieList.length, totalCount);
+    if (
+      !isResultLoading &&
+      (movieList.length < totalCount || totalCount === null)
+    ) {
+      fetchMovieList({ pageno: pageNumber + 1 });
+    }
+    return;
+  };
+
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (enteries) => {
-        if (
-          enteries[0].isIntersecting &&
-          (movieList.length < totalCount || totalCount === null)
-        ) {
-          console.log("dsd");
-          fetchMovieList({ pageno: pageNumber + 1 });
-        }
-      },
-      { threshold: 1 }
-    );
+    console.log(movieList.length, totalCount);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [isResultLoading]);
+  /*
+  useEffect(() => {
+    const observer = new IntersectionObserver((enteries) => {
+      if (
+        enteries[0].isIntersecting &&
+        !searchText &&
+        (movieList.length < totalCount || totalCount === null)
+      ) {
+        console.log("dsd", pageNumber);
+        onScrollEnd();
+        setPageNumber(pageNumber + 1);
+
+        // fetchMovieList({ pageno: pageNumber + 1 });
+      }
+      console.log("djjhijksd", pageNumber);
+    });
     if (observerTarget.current) {
       observer.observe(observerTarget.current);
     }
-    return () => {
-      if (observerTarget.current) {
-        observer.unobserve(observerTarget.current);
-      }
-    };
-  }, [observerTarget]);
+    return () => observer.disconnect();
+  }, [observerTarget]);*/
 
   const handleSearch = (value) => {
     setSearchText(value);
@@ -89,8 +116,7 @@ const App = () => {
         <SearchBox onSearch={handleSearch} />
       </div>
       <GridView data={searchText ? getSearchResult : movieList} />
-      {isResultLoading && <p> Loading </p>}
-      <div ref={observerTarget} />
+      {isResultLoading && <div className="loaidng-banner"> Loading </div>}
     </div>
   );
 };
