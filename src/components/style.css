@@ -16,3 +16,8 @@ body {
   justify-content: space-between;
 }
 
+.loading-banner {
+  position: fixed;
+  bottom: 0;
+  left: 45%;
+}
