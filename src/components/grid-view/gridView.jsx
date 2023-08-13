@@ -7,19 +7,25 @@ const GridView = (props) => {
 
   return (
     <div className="grid-wrapper" ref={gridContainerRef}>
-      {data.map((dataObj) => (
+      {data.map((dataObj, index) => (
         <div
-          key={dataObj.id}
+          key={index}
           className="grid-item"
           style={{ maxWidth: (gridContainerRef.current.offsetWidth - 40) / 3 }}
         >
           <img
+            loading="lazy"
             src={`https://test.create.diagnal.com/images/${
               dataObj[`poster-image`]
             }`}
+            alt=""
             className="grid-image"
+            onError={(event) => {
+              event.target.src =
+                "https://test.create.diagnal.com/images/placeholder_for_missing_posters.png";
+            }}
           />
-          <div>{dataObj.name} </div>
+          <div className="poster-name">{dataObj.name} </div>
         </div>
       ))}
     </div>
