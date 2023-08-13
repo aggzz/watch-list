@@ -14,11 +14,11 @@ const GridView = (props) => {
           style={{ maxWidth: (gridContainerRef.current.offsetWidth - 40) / 3 }}
         >
           <img
+            loading="lazy"
             src={`https://test.create.diagnal.com/images/${
               dataObj[`poster-image`]
             }`}
             className="grid-image"
-            loading="lazy"
           />
           <div>{dataObj.name} </div>
         </div>

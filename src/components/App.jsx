@@ -48,7 +48,7 @@ const App = () => {
 
   const handleScroll = () => {
     if (
-      window.innerHeight + document.documentElement.scrollTop <
+      window.innerHeight + Math.ceil(document.documentElement.scrollTop) <
       document.documentElement.offsetHeight
     ) {
       return;
