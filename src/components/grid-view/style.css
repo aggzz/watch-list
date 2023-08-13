@@ -9,6 +9,7 @@
 
 .grid-image {
   max-width: inherit;
+  max-height: 272px;
 }
 
 .poster-name {
