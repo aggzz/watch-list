@@ -18,6 +18,7 @@ const GridView = (props) => {
               dataObj[`poster-image`]
             }`}
             className="grid-image"
+            loading="lazy"
           />
           <div>{dataObj.name} </div>
         </div>
