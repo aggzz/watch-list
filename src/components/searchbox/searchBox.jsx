@@ -11,6 +11,7 @@ const SearchBox = (props) => {
         ref={inputRef}
         className="search-box"
         onChange={(e) => onSearch(e.target.value)}
+        maxLength={20}
       />
       <img
         src="https://test.create.diagnal.com/images/search.png"
