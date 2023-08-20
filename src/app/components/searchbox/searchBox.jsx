@@ -5,7 +5,6 @@ const SearchBox = (props) => {
   const [isSearchOn, setIsSearchOn] = useState(false);
   const inputRef = useRef();
   const onClickSearchIcon = () => inputRef.current.focus();
-  console.log(searchSuggestions);
 
   return (
     <div>

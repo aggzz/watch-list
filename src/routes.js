@@ -1,9 +1,9 @@
 import { Routes, Route } from "react-router-dom";
-import App from "./components/App";
+import MovieList from "./app/movieList";
 
 const RoutesConfig = () => (
   <Routes>
-    <Route path="/" element={<App />} />
+    <Route path="/" element={<MovieList />} />
   </Routes>
 );
 
