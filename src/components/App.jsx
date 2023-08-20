@@ -67,27 +67,6 @@ const App = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, [isResultLoading]);
-  /*
-  useEffect(() => {
-    const observer = new IntersectionObserver((enteries) => {
-      if (
-        enteries[0].isIntersecting &&
-        !searchText &&
-        (movieList.length < totalCount || totalCount === null)
-      ) {
-        console.log("dsd", pageNumber);
-        onScrollEnd();
-        setPageNumber(pageNumber + 1);
-
-        // fetchMovieList({ pageno: pageNumber + 1 });
-      }
-      console.log("djjhijksd", pageNumber);
-    });
-    if (observerTarget.current) {
-      observer.observe(observerTarget.current);
-    }
-    return () => observer.disconnect();
-  }, [observerTarget]);*/
 
   const handleSearch = (value) => {
     setSearchText(value);
@@ -101,6 +80,12 @@ const App = () => {
     return searchResult;
   }, [searchText]);
 
+  const getSearchSuggestions = () => {
+    let searchResult = searchText ? getSearchResult : movieList;
+    searchResult = searchResult.map((searchItem) => searchItem.name);
+    return Array.from(new Set(searchResult));
+  };
+
   return (
     <div className="movielist-container">
       <div className="header">
@@ -112,7 +97,11 @@ const App = () => {
           />
           <span className="header-text"> Romantic Comedy </span>
         </div>
-        <SearchBox onSearch={handleSearch} />
+        <SearchBox
+          onSearch={handleSearch}
+          searchText={searchText}
+          searchSuggestions={getSearchSuggestions()}
+        />
       </div>
       <GridView data={searchText ? getSearchResult : movieList} />
       {isResultLoading && <div className="loaidng-banner"> Loading </div>}
