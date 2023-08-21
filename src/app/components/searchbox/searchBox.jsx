@@ -7,7 +7,7 @@ const SearchBox = (props) => {
   const onClickSearchIcon = () => inputRef.current.focus();
 
   return (
-    <div>
+    <div data-testid="seacrhbox-id">
       <div className="searchbox-container">
         <input
           ref={inputRef}
