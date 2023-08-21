@@ -1,12 +1,5 @@
-import React, {
-  useEffect,
-  useState,
-  useMemo,
-  useRef,
-  useCallback,
-} from "react";
-import GridView from "./grid-view";
-import SearchBox from "./searchbox";
+import React, { useEffect, useState, useMemo } from "react";
+import { GridView, SearchBox } from "./components";
 import "./style.css";
 
 const App = () => {
@@ -16,8 +9,8 @@ const App = () => {
   const [searchText, setSearchText] = useState("");
   const [isResultLoading, setIsResultLoading] = useState(false);
   const [error, setError] = useState(null);
-  const observerTarget = useRef(null);
 
+  /* api call for fetching the list of movies */
   const fetchMovieList = async ({ pageno }) => {
     setIsResultLoading(true);
     let response = await fetch(
@@ -46,6 +39,10 @@ const App = () => {
     fetchMovieList({ pageno: 1 });
   }, []);
 
+  /* handles scroll: 
+      if scroll has reached the bottom, make the api call for the next set of
+      movie list, till all the movies are listed in ui
+  */
   const handleScroll = () => {
     if (
       window.innerHeight + Math.ceil(document.documentElement.scrollTop) <
@@ -63,35 +60,15 @@ const App = () => {
   };
 
   useEffect(() => {
-    console.log(movieList.length, totalCount);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, [isResultLoading]);
-  /*
-  useEffect(() => {
-    const observer = new IntersectionObserver((enteries) => {
-      if (
-        enteries[0].isIntersecting &&
-        !searchText &&
-        (movieList.length < totalCount || totalCount === null)
-      ) {
-        console.log("dsd", pageNumber);
-        onScrollEnd();
-        setPageNumber(pageNumber + 1);
 
-        // fetchMovieList({ pageno: pageNumber + 1 });
-      }
-      console.log("djjhijksd", pageNumber);
-    });
-    if (observerTarget.current) {
-      observer.observe(observerTarget.current);
-    }
-    return () => observer.disconnect();
-  }, [observerTarget]);*/
+  /*-- search 
+      search result displayed for a change in the search input field
+  */
 
-  const handleSearch = (value) => {
-    setSearchText(value);
-  };
+  const handleSearch = (value) => setSearchText(value);
 
   const getSearchResult = useMemo(() => {
     const searchResult = movieList.filter((movieObj) =>
@@ -100,6 +77,13 @@ const App = () => {
 
     return searchResult;
   }, [searchText]);
+
+  /* search-hints: - suggestions are displayed based on the search text and available movie list */
+  const getSearchSuggestions = () => {
+    let searchResult = searchText ? getSearchResult : movieList;
+    searchResult = searchResult.map((searchItem) => searchItem.name);
+    return Array.from(new Set(searchResult));
+  };
 
   return (
     <div className="movielist-container">
@@ -112,7 +96,11 @@ const App = () => {
           />
           <span className="header-text"> Romantic Comedy </span>
         </div>
-        <SearchBox onSearch={handleSearch} />
+        <SearchBox
+          onSearch={handleSearch}
+          searchText={searchText}
+          searchSuggestions={getSearchSuggestions()}
+        />
       </div>
       <GridView data={searchText ? getSearchResult : movieList} />
       {isResultLoading && <div className="loaidng-banner"> Loading </div>}

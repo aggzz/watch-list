@@ -13,5 +13,14 @@
 .header-text {
   vertical-align: top;
   padding-left: 5px;
-  font-weight: bold;
+  font-weight: 400;
+  font-size: 18px;
+}
+
+.suggestion-box {
+  position: absolute;
+  z-index: 1;
+  background-color: white;
+  width: 124px;
+  color: black;
 }

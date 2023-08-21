@@ -1,9 +1,11 @@
 {
   "name": "movie-list",
-  "version": "0.0.1",
+  "version": "1.0.1",
   "private": false,
   "homepage": "https://aggzz.github.io/watch-list/",
   "devDependencies": {
+    "@testing-library/jest-dom": "6.0.1",
+    "@testing-library/react": "14.0.0",
     "gh-pages": "6.0.0",
     "react-scripts": "5.0.1"
   },
@@ -18,7 +20,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=node",
+    "test": "react-scripts test --env=jsdom",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },

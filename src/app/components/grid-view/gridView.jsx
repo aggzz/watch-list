@@ -1,4 +1,5 @@
 import React, { useRef } from "react";
+import PropTypes from "prop-types";
 import "./style.css";
 
 const GridView = (props) => {
@@ -6,12 +7,19 @@ const GridView = (props) => {
   const gridContainerRef = useRef();
 
   return (
-    <div className="grid-wrapper" ref={gridContainerRef}>
+    <div data-testid="grid-id" className="grid-wrapper" ref={gridContainerRef}>
       {data.map((dataObj, index) => (
         <div
           key={index}
           className="grid-item"
-          style={{ maxWidth: (gridContainerRef.current.offsetWidth - 40) / 3 }}
+          style={{
+            maxWidth:
+              ((gridContainerRef.current
+                ? gridContainerRef.current.offsetWidth
+                : 0) -
+                40) /
+              3,
+          }}
         >
           <img
             loading="lazy"
